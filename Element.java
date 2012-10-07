@@ -11,25 +11,27 @@ import java.util.ArrayList;
  */
 public abstract class Element {
     
+    
+    private String name;
     /**
      * Переходи на інші елементи
      */
-    private ArrayList<Element> connections;
+    protected ArrayList<Element> connections;
     /**
      * Ймовірність переходів
      * 
      */
-    private ArrayList<Double> probability; 
+    protected ArrayList<Double> probability; 
     
 
-    private static int count;
+    protected static int count;
     
-    private int id;
+    protected int id;
     
     
     
-    public Element(){
-       
+    public Element(String name){
+        this.name=name;
         connections = new ArrayList<Element>();
         probability = new ArrayList<Double>();
         id=count;
@@ -46,6 +48,10 @@ public abstract class Element {
         if(connections.contains(el)==false){
             connections.add(el);
             probability.add(probab);
+            
+            if(el.getClass()==Instantaneous.class){
+                ((Instantaneous)el).addConnectedTo(this);
+            }
             return true;
         }else{
             return false;
@@ -61,11 +67,19 @@ public abstract class Element {
         if (pos>-1){
             connections.remove(pos);
             probability.remove(pos);
+            if(el.getClass()==Instantaneous.class){
+                ((Instantaneous)el).delConnectedTo(this);
+            }
             return true;
         }else{
             return false;
         }
         
+    }
+    
+    @Override
+    public String toString(){
+        return name;
     }
     /**
      * Чи можна пройди елемент в даний момент
@@ -102,5 +116,9 @@ public abstract class Element {
      */
     public abstract boolean canGiveTask();
 
-    
+    /**
+     * Отримати наступний перехід
+     * @return призначення
+     */
+    public abstract Element getNextElemnt();
 }

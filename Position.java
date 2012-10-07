@@ -8,12 +8,12 @@ package petri;
  */
 public class Position extends Element{
 
-    private int capacity;
-    private int curentNumberOfTasks;
-    private Task[] tasks;
+    protected int capacity;
+    protected int curentNumberOfTasks;
+    protected Task[] tasks;
     
-    public Position(int capacity){
-        super();
+    public Position(String name,int capacity){
+        super(name);
         this.capacity=capacity;
         tasks = new Task [capacity];
     }
@@ -25,7 +25,7 @@ public class Position extends Element{
 
     @Override
     public boolean canStayForNight() {
-        if(curentNumberOfTasks<capacity){
+        if( curentNumberOfTasks<capacity){
             return true;
         }else{
             return false;
@@ -38,6 +38,8 @@ public class Position extends Element{
        if(canStayForNight()){
            tasks[curentNumberOfTasks]=t;
            curentNumberOfTasks++;
+           t.setPosition(this);
+           t.setTime(0);
            return true;
        }else{
            return false;
@@ -60,12 +62,23 @@ public class Position extends Element{
 
     @Override
     public boolean canGiveTask() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if(curentNumberOfTasks>0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     @Override
     public boolean pass(Task t) {
         return false;
     }
+
+    @Override
+    public Element getNextElemnt() {
+        return connections.get(0);
+    }
+    
+    
     
 }
