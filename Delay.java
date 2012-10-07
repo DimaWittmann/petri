@@ -1,124 +1,60 @@
-package petri;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package petri1;
 
+import java.util.ArrayList;
 import java.util.Random;
+
 /**
- * Затримка задачі
+ *
  * @author Wittmann
  */
-public class Delay extends Element {
-
-    protected double time;
-    protected Element el;
+public class Delay extends Link{
     
-    protected double curTime;
-    protected Element curTrans;
+    public ArrayList probability;
+    private double tau;
+    private Switch ready;
     
-    protected Switch Switch;
-    
-    private boolean state;
-    /**
-     * Створити елемент затримку
-     * @param t час затримки
-     */
-    public Delay(String name,double t){
-        super(name);
-        time = t;
-        state=true;
+    public Delay(Switch ready,double tau){
+        this.tau=tau;
+        probability=new ArrayList();
+        this.ready=ready;
     }
     
-    /**
-     * Оновлює наступний перехід
-     * і час затримки
-     */
-    public void update(){
-        curTime=genTime();
-        curTrans=genNext();
-        state = true;
-    }
-    /**
-     * Генерація затримки
-     * @return  
-     */        
-    public double genTime(){
+    public double getDelay(){
         Random r=new Random();
-        return -(time)*Math.log(r.nextGaussian());
+        return -tau*Math.log(r.nextGaussian());
     }
-    /**
-     * Пошук наступного елементу
-     */
-    public Element genNext(){
-        Random r = new Random();
-        double prob =r.nextGaussian();
-        double start= 0.0;
+    
+    public void addProb(double prob){
+        probability.add(prob);
+    }
+    
+    public void clearProb(){
+        probability.clear();
+    }
+    
+    public Link getRoad(){
+        
+
+        double p=0;
+        double pNext=0;
+        Random r= new Random();
+        double prob=r.nextGaussian();
+        ready.open();
         for (int i=0;i<probability.size();i++){
-            if (prob<=probability.get(i) && probability.get(i)>=start){
-                return connections.get(i);
+            pNext+=(double)probability.get(i);
+            if (p<=prob && prob<=pNext){
+                return (Link)connections.get(i);
             }
-            start+=probability.get(i);
+            
         }
         
-        return connections.get(0);
-        
+        return (Link)connections.get(0);
     }
     
-    @Override
-    public boolean isPassable() {
     
-        Element p=getNextElemnt();
-        
-        if(p.isPassable() ){
-            return true;
-        }else{
-            return false;
-        }
-    }
-    @Override
-    public boolean pass(Task t) {
-        if (isPassable()){
-            t.setPosition(this);
-            t.setTime(0);
-            state=false;
-            if (Switch!=null){
-                Switch.setState();
-            }
-            return true;
-        }else{
-            return false;
-        }
-    }
     
-    @Override
-    public boolean canStayForNight() {
-        return false;
-    }
-
-    @Override
-    public boolean stayForNight(Task t) {
-        return false;
-    }
-
-    @Override
-    public Task giveTask() {
-        return null;
-    }
-
-    @Override
-    public boolean canGiveTask() {
-        return false;
-    }
-
-    @Override
-    public Element getNextElemnt() {
-        return curTrans;
-    }
-
-    public double getNextDelay(){
-        return curTime;
-    }
-    
-    public void addSwitch(Switch el){
-        Switch=el;
-    }
-
-   
 }

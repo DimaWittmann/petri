@@ -2,47 +2,33 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri;
+package petri1;
 
 /**
- * Перемикач, для визначення зайнятості процесора
+ *
  * @author Wittmann
  */
-public class Switch extends Position{
-    
-    /**
-     * Зайнятість процесора
-     */
-    private boolean state;
-    
+public class Switch {
+    private boolean ready;
+    public String name;
     public Switch(String name){
-        super(name,1);
-        state=true;
+        ready=true;
+        this.name=name;
     }
     
-    
-    @Override
-     public boolean canGiveTask(){
-         return state;
-     }
-     
-    /**
-     * Встановити стан готовності
-     */
-    public void setState() {
-        state=true;
+    public boolean getState(){
+        return ready;
     }
     
-    /**
-     * Встановити стан занятості
-     */
-    public void resetState() {
-        state=true;
+    public void lock(){
+        ready=false;
+        System.out.println(name+" locked");
     }
     
-    
-    
-    
-    
-    
+    public void open(){
+        ready = true;
+        System.out.println(name+" open");
+    }
+            
+            
 }

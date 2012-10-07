@@ -2,33 +2,35 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri;
+package petri1;
 
 /**
- * Клас - оброблювача
+ *
  * @author Wittmann
  */
-public class Processor extends Position{
+public class Processor extends Link {
     
-    protected double timeOfWork;
+    private Delay delay;
+    public String name;
+    private double timeOfExec;
     
-    public Processor(String name,int capacity){
-        super(name,capacity);   
+    public Processor (Delay delay,String name){
+        this.delay=delay;
+        this.name=name;
+        this.addLink(delay);
     }
     
-    
-    @Override
-    public  boolean stayForNight(Task t){
-        if(canStayForNight()){
-           tasks[curentNumberOfTasks]=t;
-           curentNumberOfTasks++;
-           t.setPosition(this);
-           double time=((Delay)getNextElemnt()).getNextDelay();
-           timeOfWork+=time;
-           t.setTime(time);
-           return true;
-        }else{
-           return false;
-        }
+    public void addTask(Task t){
+        t.position=this;
+        double time = delay.getDelay();
+        timeOfExec+=time;
+        t.time+=time;
+        
+        System.out.println(name+"=>"+t.name +" :"+time);
     }
+    
+    public Link getRoad(){
+        return delay.getRoad();
+    }
+    
 }
