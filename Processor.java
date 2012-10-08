@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri1;
+package petri;
 
 /**
  *
@@ -10,9 +10,10 @@ package petri1;
  */
 public class Processor extends Link {
     
+    public Queue queue;
     private Delay delay;
     public String name;
-    private double timeOfExec;
+    public double timeOfExec;
     
     public Processor (Delay delay,String name){
         this.delay=delay;
@@ -25,6 +26,10 @@ public class Processor extends Link {
         double time = delay.getDelay();
         timeOfExec+=time;
         t.time+=time;
+        
+        if (queue!=null){
+            queue.updateTasks(time);
+        }
         
         System.out.println(name+"=>"+t.name +" :"+time);
     }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri1;
+package petri;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Queue extends Link {
     
-    private ArrayList queue;
+    private ArrayList<Task> queue;
     public String name;
     
     public Queue(String name){
@@ -34,8 +34,12 @@ public class Queue extends Link {
         }else{
             return null;
         }
-        
     }
     
+    public void updateTasks(double time){
+        for(int i=0;i<queue.size();i++){
+            queue.get(i).time+=time;
+        }
+    }
     
 }

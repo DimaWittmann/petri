@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri1;
+package petri;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,16 +16,23 @@ public class Delay extends Link{
     public ArrayList probability;
     private double tau;
     private Switch ready;
+    private boolean poisson;
     
-    public Delay(Switch ready,double tau){
+    public Delay(Switch ready,double tau,boolean poisson ){
         this.tau=tau;
         probability=new ArrayList();
         this.ready=ready;
+        this.poisson=poisson;
     }
     
     public double getDelay(){
         Random r=new Random();
-        return -tau*Math.log(r.nextGaussian());
+        if(poisson){
+            
+            return -tau*Math.log(r.nextDouble());
+        }else{
+            return tau;
+        }
     }
     
     public void addProb(double prob){
@@ -42,7 +49,7 @@ public class Delay extends Link{
         double p=0;
         double pNext=0;
         Random r= new Random();
-        double prob=r.nextGaussian();
+        double prob=r.nextDouble();
         ready.open();
         for (int i=0;i<probability.size();i++){
             pNext+=(double)probability.get(i);

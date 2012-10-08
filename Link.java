@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri1;
+package petri;
 
 import java.util.ArrayList;
 
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Link {
     
-    protected  ArrayList connections;
+    protected  ArrayList<Link> connections;
     
     public Link(){
         connections=new ArrayList();
@@ -27,7 +27,7 @@ public class Link {
     }
     
     public Link getRoad(){
-        return (Link)connections.get(0);
+        return connections.get(0);
     }
     
     public void addTask(Task t){

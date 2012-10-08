@@ -2,14 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package petri1;
 
+package petri;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import petri.Petri;
+
+
 
 /**
  *
@@ -22,22 +23,21 @@ public class Modeling {
      */
     public static void main(String[] args) {
        
-        Queue q=new Queue("1");
-        Switch s=new Switch("CPU");
-        Immediate i=new Immediate(s);
-        Delay d=new Delay(s,25);
-        Processor p=new Processor(d, "CPU");
+        Device CPU =new Device("CPU",1, false);
+        Device RAM=new Device("RAM",5, true);
         
-        q.addLink(i);
-        i.addLink(p);
-        d.addLink(q);
-        d.addProb(1.0);
+        CPU.d.addLink(CPU.q);
+        CPU.d.addProb(0.5);
+        CPU.d.addLink(RAM.q);
+        CPU.d.addProb(0.5);
+        RAM.d.addLink(CPU.q);
+        RAM.d.addProb(1);
         
         Task t1=new Task("T1");
         Task t2=new Task("T2");
         
-        q.addTask(t1);
-        q.addTask(t2);
+        CPU.q.addTask(t1);
+        CPU.q.addTask(t2);
         
 
         while (true){
@@ -45,12 +45,19 @@ public class Modeling {
             t2.goFuther();
                     
             
+            getKey();
+        }
+    }
+    
+    
+    public static void getKey(){
             BufferedReader bReader = new BufferedReader (new InputStreamReader(System.in)); 
             try {
-                bReader.readLine();
+                if(0==bReader.readLine().compareTo(" ") ){
+                    System.exit(0);
+                }
             } catch (IOException ex) {
-                Logger.getLogger(Petri.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Modeling.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
     }
 }
