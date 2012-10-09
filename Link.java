@@ -26,12 +26,12 @@ public class Link {
         connections.remove(el);
     }
     
-    public Link getRoad(){
+    public Link getRoad(Task t){
         return connections.get(0);
     }
     
-    public void addTask(Task t){
-        
+    public double addTask(Task t){
+        return 0;
     }
   
     

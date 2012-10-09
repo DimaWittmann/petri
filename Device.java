@@ -30,4 +30,17 @@ public class Device {
         
     }
     
+	
+	public void addConnection(Device device,double prob){
+		this.d.addLink(device.q);
+        this.d.addProb(prob);
+	}
+	
+	public void addTask(Task t){
+		this.q.addTask(t);
+	}
+	
+	public void showPerformance(double curTime){
+                    System.out.print(p.name+" : "+ p.timeOfExec/curTime*100+"%");
+		}
 }

@@ -14,22 +14,28 @@ public class Queue extends Link {
     
     private ArrayList<Task> queue;
     public String name;
+    public boolean debug;
     
     public Queue(String name){
         queue= new ArrayList();
         this.name=name;
     }
     
-    public void addTask(Task t){
+    public double addTask(Task t){
         t.position=this;
         queue.add(t);
-        System.out.println(t.name+ " wait at "+name);
+        if (debug){
+            System.out.println(t.name+ " wait at "+name);
+        }
+       
+        return 0;
     }
     
-    public Link getRoad(){
+    public Link getRoad(Task t){
     
-        Link r =((Immediate)connections.get(0)).getRoad();
+        Link r =((Immediate)connections.get(0)).getRoad(t);
         if(r!=null){
+            queue.remove(t);
             return r;
         }else{
             return null;

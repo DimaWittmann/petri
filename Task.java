@@ -19,11 +19,12 @@ public class Task {
         time=0;
     }
     
-    public void goFuther(){
-        Link r= position.getRoad();
+    public double goFuther(){
+        Link r= position.getRoad(this);
         if (r!=null){
-            r.addTask(this);
+            return r.addTask(this);
         }
+	return 0;
     }
     
 }

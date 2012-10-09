@@ -19,7 +19,7 @@ public class Immediate extends Link{
        this.ready=ready;
     }
     
-    public Link  getRoad(){
+    public Link  getRoad(Task t){
         if(ready.getState()){
             ready.lock();
             return (Link)connections.get(0);

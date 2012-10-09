@@ -11,6 +11,9 @@ package petri;
 public class Switch {
     private boolean ready;
     public String name;
+    public boolean debug;
+    
+    
     public Switch(String name){
         ready=true;
         this.name=name;
@@ -22,12 +25,16 @@ public class Switch {
     
     public void lock(){
         ready=false;
-        System.out.println(name+" locked");
+        if(debug){
+            System.out.println(name+" locked");
+        }
     }
     
     public void open(){
         ready = true;
-        System.out.println(name+" open");
+        if(debug){
+            System.out.println(name+" open");
+        }
     }
             
             

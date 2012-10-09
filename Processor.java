@@ -14,6 +14,7 @@ public class Processor extends Link {
     private Delay delay;
     public String name;
     public double timeOfExec;
+    public boolean debug;
     
     public Processor (Delay delay,String name){
         this.delay=delay;
@@ -21,7 +22,7 @@ public class Processor extends Link {
         this.addLink(delay);
     }
     
-    public void addTask(Task t){
+    public double addTask(Task t){
         t.position=this;
         double time = delay.getDelay();
         timeOfExec+=time;
@@ -30,12 +31,15 @@ public class Processor extends Link {
         if (queue!=null){
             queue.updateTasks(time);
         }
-        
-        System.out.println(name+"=>"+t.name +" :"+time);
+        if (debug){
+            System.out.println(name+"=>"+t.name +" :"+time);
+        }
+	return time;
     }
     
-    public Link getRoad(){
-        return delay.getRoad();
+    public Link getRoad(Task t){
+        return delay.getRoad(t);
     }
     
+	
 }

@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class Delay extends Link{
     
-    public ArrayList probability;
+    public ArrayList<Double> probability;
     private double tau;
     private Switch ready;
     private boolean poisson;
@@ -43,7 +43,7 @@ public class Delay extends Link{
         probability.clear();
     }
     
-    public Link getRoad(){
+    public Link getRoad(Task t){
         
 
         double p=0;
@@ -54,12 +54,12 @@ public class Delay extends Link{
         for (int i=0;i<probability.size();i++){
             pNext+=(double)probability.get(i);
             if (p<=prob && prob<=pNext){
-                return (Link)connections.get(i);
+                return connections.get(i);
             }
             
         }
         
-        return (Link)connections.get(0);
+        return connections.get(0);
     }
     
     
