@@ -15,14 +15,18 @@ public class Processor extends Link {
     public String name;
     public double timeOfExec;
     public boolean debug;
+    public int taskExec;
     
     public Processor (Delay delay,String name){
         this.delay=delay;
         this.name=name;
         this.addLink(delay);
+            
     }
     
     public double addTask(Task t){
+        taskExec++;
+       
         t.position=this;
         double time = delay.getDelay();
         timeOfExec+=time;
@@ -41,5 +45,8 @@ public class Processor extends Link {
         return delay.getRoad(t);
     }
     
+    public String toString(){
+        return "p"+name;
+    }
 	
 }

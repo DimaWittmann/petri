@@ -48,4 +48,7 @@ public class Queue extends Link {
         }
     }
     
+    public String toString(){
+        return "q"+name;
+    }
 }

@@ -11,7 +11,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
@@ -41,12 +40,12 @@ public class Modeling {
         Device inSBridge = new Device("inSBridge",2,true);
         Device outNBridge = new Device("outDBridge",4,true);
         Device inNBridge = new Device("inDBridge",4,true);
-        Device DC = new Device("DC", 43, true); 
-        Device USB = new Device("USB",20,true);
-        Device ISA = new Device("ISA",25,true);
-        Device LPT = new Device("LPT",50,true);
-        Device AU = new Device("AU",53,true);
-        Device VP = new Device("VP",32,true);
+        Device DC = new Device("DC", 7, true); 
+        Device USB = new Device("USB",9,true);
+        Device ISA = new Device("ISA",13,true);
+        Device LPT = new Device("LPT",11,true);
+        Device AU = new Device("AU",13,true);
+        Device VP = new Device("VP",14,true);
         
         view =new View();
         
@@ -95,33 +94,32 @@ public class Modeling {
         }
         
         view.setVisible(true);
+        while (true){
 
-
-        while(true){
-            int j=30000000;
-
-            while (j>0){
-                j--;
-                for (int i=0;i<t.size();i++){
-                if(curTime>=t.get(0).time){
-                    t.get(0).goFuther();
+            for (int i=0;i<t.size();i++){
+                if(curTime>=t.get(i).time){
+                    t.get(i).goFuther();
                 }
+            }
+
+        
+            curTime+=dTime;
+            for (int i=0;i<devices.length;i++) {
+                view.labels[i].setText(showPerf(devices[i]));
                 
+                String str= ((Integer)devices[i].p.taskExec).toString();
+                view.counters[i].setText(str);
+               
+                view.t1Position.setText(t.get(0).position.toString());
+                view.t2Position.setText(t.get(1).position.toString());
+                view.t3Position.setText(t.get(2).position.toString());
+            }
+           
+            Thread.sleep(100);
+            
 
-                curTime+=dTime;
-                for (i=0;i<devices.length;i++) {
-                    view.labels[i].setText(showPerf(devices[i]));
-                } 
-                Thread.sleep(1);
-
-            }           
-                
-            }        
-                
-
-            System.out.println(curTime);
-
-        }
+        }           
+        
         
         
         

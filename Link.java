@@ -34,5 +34,7 @@ public class Link {
         return 0;
     }
   
-    
+    public String toString(){
+        return null;
+    }
 }

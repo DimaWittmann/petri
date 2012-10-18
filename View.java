@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 public class View extends javax.swing.JFrame {
     
     JLabel [] labels;
+    JLabel [] counters;
     
     /**
      * Creates new form View
@@ -23,6 +24,9 @@ public class View extends javax.swing.JFrame {
         JLabel [] labels={lCPU, lRAM,loutSBridge,linSBridge, loutNBridge,
             linNBridge,lDC,lUSB,lISA,lLPT,lAU,lVP};
         this.labels=labels;
+        JLabel [] counters={kCPU, kRAM,koutSBridge,kinSBridge, koutNBridge,
+            kinNBridge,kDC,kUSB,kISA,kLPT,kAU,kVP};
+        this.counters=counters;
  
     }
 
@@ -60,6 +64,24 @@ public class View extends javax.swing.JFrame {
         jLabel23 = new javax.swing.JLabel();
         lVP = new javax.swing.JLabel();
         lRAM = new javax.swing.JLabel();
+        koutSBridge = new javax.swing.JLabel();
+        kinSBridge = new javax.swing.JLabel();
+        koutNBridge = new javax.swing.JLabel();
+        kinNBridge = new javax.swing.JLabel();
+        kDC = new javax.swing.JLabel();
+        kUSB = new javax.swing.JLabel();
+        kISA = new javax.swing.JLabel();
+        kLPT = new javax.swing.JLabel();
+        kAU = new javax.swing.JLabel();
+        kVP = new javax.swing.JLabel();
+        kRAM = new javax.swing.JLabel();
+        kCPU = new javax.swing.JLabel();
+        t1 = new javax.swing.JLabel();
+        t2 = new javax.swing.JLabel();
+        t3 = new javax.swing.JLabel();
+        t1Position = new javax.swing.JLabel();
+        t2Position = new javax.swing.JLabel();
+        t3Position = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +133,42 @@ public class View extends javax.swing.JFrame {
         lVP.setText("jLabel24");
 
         lRAM.setText("jLabel25");
+
+        koutSBridge.setText("jLabel1");
+
+        kinSBridge.setText("jLabel2");
+
+        koutNBridge.setText("jLabel12");
+
+        kinNBridge.setText("jLabel14");
+
+        kDC.setText("jLabel15");
+
+        kUSB.setText("jLabel16");
+
+        kISA.setText("jLabel17");
+
+        kLPT.setText("jLabel18");
+
+        kAU.setText("jLabel19");
+
+        kVP.setText("jLabel20");
+
+        kRAM.setText("jLabel21");
+
+        kCPU.setText("jLabel22");
+
+        t1.setText("jLabel1");
+
+        t2.setText("jLabel2");
+
+        t3.setText("jLabel12");
+
+        t1Position.setText("jLabel14");
+
+        t2Position.setText("jLabel15");
+
+        t3Position.setText("jLabel16");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,7 +227,37 @@ public class View extends javax.swing.JFrame {
                         .addComponent(jLabel23)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lVP)))
-                .addContainerGap(552, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(koutSBridge)
+                    .addComponent(kinSBridge)
+                    .addComponent(kUSB)
+                    .addComponent(kISA)
+                    .addComponent(kLPT)
+                    .addComponent(kAU)
+                    .addComponent(kVP)
+                    .addComponent(kRAM)
+                    .addComponent(kCPU)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(kDC)
+                                .addGap(18, 18, 18)
+                                .addComponent(t3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(kinNBridge)
+                                .addGap(18, 18, 18)
+                                .addComponent(t2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(koutNBridge)
+                                .addGap(18, 18, 18)
+                                .addComponent(t1)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t1Position)
+                            .addComponent(t2Position)
+                            .addComponent(t3Position))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,52 +265,70 @@ public class View extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l1)
-                    .addComponent(lCPU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lCPU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kCPU))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(l2)
                     .addComponent(jLabel13)
-                    .addComponent(lRAM))
+                    .addComponent(lRAM)
+                    .addComponent(kRAM))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(loutSBridge))
+                    .addComponent(loutSBridge)
+                    .addComponent(koutSBridge))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(linSBridge))
+                    .addComponent(linSBridge)
+                    .addComponent(kinSBridge))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(loutNBridge))
+                    .addComponent(loutNBridge)
+                    .addComponent(koutNBridge)
+                    .addComponent(t1)
+                    .addComponent(t1Position))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(linNBridge))
+                    .addComponent(linNBridge)
+                    .addComponent(kinNBridge)
+                    .addComponent(t2)
+                    .addComponent(t2Position))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(lDC))
+                    .addComponent(lDC)
+                    .addComponent(kDC)
+                    .addComponent(t3)
+                    .addComponent(t3Position))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(lUSB))
+                    .addComponent(lUSB)
+                    .addComponent(kUSB))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(lISA))
+                    .addComponent(lISA)
+                    .addComponent(kISA))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(lLPT))
+                    .addComponent(lLPT)
+                    .addComponent(kLPT))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(lAU))
+                    .addComponent(lAU)
+                    .addComponent(kAU))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(lVP))
+                    .addComponent(lVP)
+                    .addComponent(kVP))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
 
@@ -245,6 +351,18 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel kAU;
+    public javax.swing.JLabel kCPU;
+    public javax.swing.JLabel kDC;
+    public javax.swing.JLabel kISA;
+    public javax.swing.JLabel kLPT;
+    public javax.swing.JLabel kRAM;
+    public javax.swing.JLabel kUSB;
+    public javax.swing.JLabel kVP;
+    public javax.swing.JLabel kinNBridge;
+    public javax.swing.JLabel kinSBridge;
+    public javax.swing.JLabel koutNBridge;
+    public javax.swing.JLabel koutSBridge;
     private javax.swing.JLabel l1;
     private javax.swing.JLabel l2;
     public javax.swing.JLabel lAU;
@@ -259,5 +377,11 @@ public class View extends javax.swing.JFrame {
     public javax.swing.JLabel linSBridge;
     public javax.swing.JLabel loutNBridge;
     public javax.swing.JLabel loutSBridge;
+    public javax.swing.JLabel t1;
+    public javax.swing.JLabel t1Position;
+    public javax.swing.JLabel t2;
+    public javax.swing.JLabel t2Position;
+    public javax.swing.JLabel t3;
+    public javax.swing.JLabel t3Position;
     // End of variables declaration//GEN-END:variables
 }
